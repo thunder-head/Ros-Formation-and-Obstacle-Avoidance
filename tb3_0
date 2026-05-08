@@ -7,11 +7,13 @@
 
 # Authors: Hongbo Li, Han Wang#
 
+#remember, this is the code for followers and not the primary turtlebot3 code
+
 import rospy
 from geometry_msgs.msg import Twist, Point, Quaternion
 #Twist means expressing velocity in angular and linear parts (what it prints when you are using teleop)
 #Point is simply recording a point in 3D space
-#Quaternion is rotation basically (DON'T GO DOWN THE RABBIT HOLE DON'T GO DOWN THE RABBIT HOLE DON'T GO DOWN THE RAB
+#Quaternion is rotation basically (DON'T GO DOWN THE RABBIT HOLE DON'T GO DOWN THE RABBIT HOLE DON'T GO DOWN THE RABBIT HOLE)
 import tf
 from math import radians, copysign, sqrt, pow, pi, atan2,cos,sin
 from tf.transformations import euler_from_quaternion
@@ -166,6 +168,7 @@ class GotoPoint():
                             min_dis = msg.ranges[i]
                             min_ang = i
                             #IT DOESNT MAKE SENSE!!! WHY IS THERE A 90 DEGREE ANGLE WHERE IT DOESN'T RECORD ANYTHING
+                            #actually it does. the 90 degree angle is most likely where the follower turtlebots would be behind it, so it won't record that area
         if min_dis<10:
             min_point.x=tb_pos.x+min_dis*cos(i)
             min_point.y=tb_pos.y+min_dis*sin(i)
